@@ -1,0 +1,17 @@
+"""Coverage threshold configuration para api-reportes"""
+[coverage]
+fail_under = 80
+precision = 2
+
+[html]
+directory = coverage_report
+
+[report]
+exclude_lines =
+    pragma: no cover
+    def __repr__
+    raise AssertionError
+    raise NotImplementedError
+    if __name__ == .__main__.:
+    if TYPE_CHECKING:
+    @abstractmethod

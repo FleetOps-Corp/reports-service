@@ -1,0 +1,28 @@
+"""Protocol Buffers for Assignment Service"""
+syntax = "proto3";
+
+package assignment;
+
+import "google/protobuf/timestamp.proto";
+
+service AssignmentService {
+    rpc GetAssignments(AssignmentRequest) returns (AssignmentList);
+}
+
+message AssignmentRequest {
+    string vehicle_id = 1;
+    string status = 2;
+}
+
+message AssignmentResponse {
+    string assignment_id = 1;
+    string vehicle_id = 2;
+    string driver_id = 3;
+    string route_id = 4;
+    google.protobuf.Timestamp assigned_at = 5;
+    google.protobuf.Timestamp completed_at = 6;
+}
+
+message AssignmentList {
+    repeated AssignmentResponse assignments = 1;
+}

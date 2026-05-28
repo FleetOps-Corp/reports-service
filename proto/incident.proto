@@ -1,0 +1,36 @@
+"""Protocol Buffers for Incident Service"""
+syntax = "proto3";
+
+package incident;
+
+import "google/protobuf/timestamp.proto";
+
+service IncidentService {
+    rpc GetIncidents(IncidentRequest) returns (IncidentList);
+    rpc CreateIncident(CreateIncidentRequest) returns (IncidentResponse);
+}
+
+message IncidentRequest {
+    string location = 1;
+    string vehicle_id = 2;
+}
+
+message IncidentResponse {
+    string incident_id = 1;
+    string vehicle_id = 2;
+    string severity = 3;
+    string description = 4;
+    google.protobuf.Timestamp created_at = 5;
+    google.protobuf.Timestamp resolved_at = 6;
+}
+
+message IncidentList {
+    repeated IncidentResponse incidents = 1;
+    int32 total_count = 2;
+}
+
+message CreateIncidentRequest {
+    string vehicle_id = 1;
+    string severity = 2;
+    string description = 3;
+}

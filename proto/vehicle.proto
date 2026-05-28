@@ -1,0 +1,31 @@
+"""Protocol Buffers for Vehicle Service"""
+syntax = "proto3";
+
+package vehicle;
+
+service VehicleService {
+    rpc GetVehicle(VehicleRequest) returns (VehicleResponse);
+    rpc ListVehicles(ListRequest) returns (VehicleList);
+}
+
+message VehicleRequest {
+    string vehicle_id = 1;
+}
+
+message VehicleResponse {
+    string vehicle_id = 1;
+    string status = 2;
+    string location = 3;
+    string model = 4;
+    double latitude = 5;
+    double longitude = 6;
+}
+
+message ListRequest {
+    string location = 1;
+    string status = 2;
+}
+
+message VehicleList {
+    repeated VehicleResponse vehicles = 1;
+}
