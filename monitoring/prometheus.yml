@@ -1,0 +1,16 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+scrape_configs:
+  - job_name: "api-reportes"
+    static_configs:
+      - targets: ["api-reportes:8002"]
+
+  - job_name: "graficas-estadisticas"
+    static_configs:
+      - targets: ["graficas-estadisticas:8003"]
+
+  - job_name: "prometheus"
+    static_configs:
+      - targets: ["localhost:9090"]

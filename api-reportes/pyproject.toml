@@ -1,0 +1,64 @@
+[build-system]
+requires = ["setuptools>=65.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "api-reportes"
+version = "1.0.0"
+description = "Microservicio de Reportes - Agregación de datos operacionales"
+requires-python = ">=3.12"
+authors = [
+    { name = "FleetOps Team", email = "dev@fleetops.corp" }
+]
+dependencies = [
+    "fastapi>=0.109.0",
+    "uvicorn>=0.27.0",
+    "pydantic>=2.5.3",
+    "pydantic-settings>=2.1.0",
+    "motor>=3.3.2",
+    "beanie>=2.0.0",
+    "grpcio>=1.60.0",
+    "grpcio-tools>=1.60.0",
+    "pandas>=2.0.3",
+    "prometheus-client>=0.19.0",
+    "python-dotenv>=1.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-asyncio>=0.21.0",
+    "pytest-cov>=4.1.0",
+    "black>=23.0.0",
+    "flake8>=6.0.0",
+    "mypy>=1.0.0",
+]
+
+[tool.pytest.ini_options]
+minversion = "7.4"
+addopts = "--strict-markers -v --cov=src --cov-report=html --cov-report=term"
+testpaths = ["tests"]
+python_files = "test_*.py"
+asyncio_mode = "auto"
+
+[tool.coverage.run]
+branch = true
+source = ["src"]
+omit = [
+    "*/site-packages/*",
+    "*/distutils/*",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+]
+fail_under = 80
+
+[tool.black]
+line-length = 100
+target-version = ['py312']
